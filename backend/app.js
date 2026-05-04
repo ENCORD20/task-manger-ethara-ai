@@ -12,9 +12,10 @@ const app = express();
 
 // SPA on another Vercel host → cross-origin POST with JSON fires a preflight OPTIONS.
 const corsMw = cors({
-  origin: true,
+  origin: process.env.CLIENT_URL || true,
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: true,
   optionsSuccessStatus: 204,
 });
 
